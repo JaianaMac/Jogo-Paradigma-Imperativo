@@ -64,13 +64,24 @@ def start_game():
         return
     game_started = True
 
-    score = 0
-    text_turtle.clear()
 
+    text_turtle.clear()
+    t.clear()
+    t.bgcolor('#e83bff')
+    snake.hideturtle()
+    folha.hideturtle()
+
+    score = 0
     snake_speed = 1.5
     snake_length = 3
+
     snake.shapesize(1,snake_length,1)
+    snake.color('#f2d705')
+    snake.setheading(0)
+    snake.goto(0,0)
     snake.showturtle()
+
+    folha.color('green')
     display_score(score)
     lugar_folha()
 
@@ -83,9 +94,11 @@ def start_game():
             snake_speed = snake_speed + 0.5
             score = score + 10
             display_score(score)
+
         if outside_window():
             game_over()
-            break
+            game_started = False   
+            return
 
 def move_up():
     if snake.heading() == 0 or snake.heading() == 180:
