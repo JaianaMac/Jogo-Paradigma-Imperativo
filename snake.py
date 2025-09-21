@@ -5,7 +5,7 @@ t.bgcolor('#e83bff')
 
 snake = t.Turtle()
 snake.shape('square')
-snake.color('#f2d705')
+snake.color("#5E06A5")
 snake.speed(0)
 snake.penup()
 snake.hideturtle()
@@ -19,7 +19,7 @@ folha.penup()
 folha.hideturtle()
 folha.speed()
 
-game_started = False
+inicio_do_jogo = False
 text_turtle = t.Turtle()
 text_turtle.write('Press SPACE to start',align='center',font=('Arial',16,'bold'))
 text_turtle.hideturtle()
@@ -28,23 +28,23 @@ score_turtle = t.Turtle()
 score_turtle.hideturtle()
 score_turtle.speed(0)
 
-def outside_window():
-    left_wall = -t.window_width()/2
-    right_wall = t.window_width()/2
-    top_wall = t.window_height()/2
-    bottom_wall = -t.window_height()/2
+def fora_da_janela():
+    parede_a_esquerda = -t.window_width()/2
+    parede_a_direita = t.window_width()/2
+    parede_superior = t.window_height()/2
+    parede_inferior = -t.window_height()/2
     (x,y) = snake.pos()
-    outside = x < left_wall or  x > right_wall or  y < bottom_wall or y > top_wall
-    return outside
+    fora_do_limite = x < parede_a_esquerda or  x > parede_a_direita or  y < parede_inferior or y > parede_superior
+    return fora_do_limite
 
-def game_over():
+def fim_de_jogo():
     snake.color('#e83bff')
     folha.color('#e83bff')
     t.penup()
     t.hideturtle()
     t.write('GAME OVER!',align='center' , font=('Aerial',30,'normal'))
 
-def display_score(current_score):
+def placar_na_tela(current_score):
     score_turtle.clear()
     score_turtle.penup()
     x = (t.window_width() / 2)-50
@@ -58,11 +58,11 @@ def lugar_folha():
     folha.sety(rd.randint(-200,200))
     folha.showturtle()
 
-def start_game():
-    global game_started
-    if game_started:
+def inicio_de_jogo():
+    global inicio_do_jogo
+    if inicio_do_jogo:
         return
-    game_started = True
+    inicio_do_jogo = True
 
 
     text_turtle.clear()
@@ -76,13 +76,13 @@ def start_game():
     snake_length = 3
 
     snake.shapesize(1,snake_length,1)
-    snake.color('#f2d705')
+    snake.color("#5E06A5")
     snake.setheading(0)
     snake.goto(0,0)
     snake.showturtle()
 
     folha.color('green')
-    display_score(score)
+    placar_na_tela(score)
     lugar_folha()
 
     while True:
@@ -93,33 +93,34 @@ def start_game():
             snake.shapesize(1,snake_length,1)
             snake_speed = snake_speed + 0.5
             score = score + 10
-            display_score(score)
+            placar_na_tela(score)
 
-        if outside_window():
-            game_over()
-            game_started = False   
+        if fora_da_janela():
+            fim_de_jogo()
+            inicio_do_jogo = False   
             return
 
-def move_up():
+def mover_para_cima():
     if snake.heading() == 0 or snake.heading() == 180:
         snake.setheading(90)
 
-def move_down():
+def mover_para_baixo():
     if snake.heading() == 0 or snake.heading() == 180:
         snake.setheading(270)
 
-def move_left():
+def mover_para_esquerda():
     if snake.heading() == 90 or snake.heading() == 270:
         snake.setheading(180)
 
-def move_right():
+def mover_para_direita():
     if snake.heading() == 90 or snake.heading() == 270:
         snake.setheading(0)
 
-t.onkey(start_game,'space')
-t.onkey(move_up,'Up')
-t.onkey(move_right,'Right')
-t.onkey(move_down,'Down')
-t.onkey(move_left,'Left')
+t.onkey(inicio_de_jogo,'space')
+t.onkey(mover_para_cima,'Up')
+t.onkey(mover_para_direita,'Right')
+t.onkey(mover_para_baixo,'Down')
+t.onkey(mover_para_esquerda,'Left')
 t.listen()
 t.mainloop()
+
