@@ -1,5 +1,3 @@
-Desenvolvimento de um jogo Snake, para a aula de Paradigmas de programação, utilizando o tipo de paradigma (x), com a linguagem de programação Python, no editor de código-fonte VSCODE.
+Desenvolvimento do jogo Snake, elaborado para a disciplina de Paradigmas de Programação, utilizando o paradigma imperativo, na linguagem de programação Python, com o auxílio do editor de código-fonte Visual Studio Code (VS Code).
 
-O jogo consiste numa cobrinha da cor roxa, que deve coletar o máximo de folhas verdes possivel, num fundo rosa para aumentar seu tamanho, indo para direções como cima, baixo, esquerda e direita.
-
-
+O jogo consiste em uma cobrinha de cor roxa que deve coletar o máximo possível de folhas verdes, dispostas sobre um fundo rosa, com o objetivo de aumentar seu tamanho. A movimentação da cobrinha ocorre nas direções cima, baixo, esquerda e direita, de acordo com os comandos do jogador.
